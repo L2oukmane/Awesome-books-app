@@ -10,6 +10,7 @@ Our goal here is to Build a book application with add and remove feature from sc
 - Add book feature
 - Remove book feature
 - Saving current state of book list to local storage
+- Live date and time update using luxos library
 
 ## Built With
 
@@ -17,6 +18,7 @@ Our goal here is to Build a book application with add and remove feature from sc
 - Webhint (A customizable linting tool that helps you improve your site's accessibility, speed, cross-browser compatibility, and more by checking your code for best practices and common errors).
 - Stylelint (A mighty, modern linter that helps you avoid errors and enforce conventions in your styles).
 - ESlint (A mighty, modern linter that helps you avoid errors and enforce conventions in JavaScript codes)
+- Luxon (A library for dealing with dates and times in JavaScript.)
 
 To get a local copy up and running follow these simple example steps.
 
@@ -87,4 +89,3 @@ All source code files are licensed under the permissive zlib license
 ## Author
 
 - **Oustani Loukmane** - [github](https://github.com/L2oukmane), [linkedin](https://www.linkedin.com/in/loukmane-oustani-221668211/), [twitter](https://twitter.com/LoukmaneOustani)
-- **Alexander Oguzie-Ibeh** - [github](https://github.com/harlexkhal), [linkedin](https://www.linkedin.com/in/alexander-oguzie-ibeh-776814164), [twitter](https://twitter.com/harlexkhal)
