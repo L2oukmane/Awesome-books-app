@@ -1,52 +1,52 @@
 class Application {
-    constructor() {
-      this.contactForm = document.querySelector('.book_form');
-      this.title = document.querySelector('.book_title');
-      this.author = document.querySelector('.book_author');
-      this.bookList = document.querySelector('.parent_book_container');
-      this.dateTime = document.querySelector('.date_time');
-      this.bookListSection = document.querySelector('.book_list_section');
-      this.addBookSection = document.querySelector('.add_book_section');
-      this.contactSection = document.querySelector('.contact_section');
-  
-      this.booksArray = [];
-      this.monthMap = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  
-      this.contactForm.addEventListener('submit', (event) => {
-        event.currentTarget.ref.addBook();
-        event.preventDefault();
-      });
-      this.contactForm.ref = this;
-  
-      document.querySelector('.nav1').addEventListener('click', (event) => {
-        event.currentTarget.ref.displayBookListSection();
-      });
-      document.querySelector('.nav1').ref = this;
-  
-      document.querySelector('.nav2').addEventListener('click', (event) => {
-        event.currentTarget.ref.displayAddBookSection();
-      });
-      document.querySelector('.nav2').ref = this;
-  
-      document.querySelector('.nav3').addEventListener('click', (event) => {
-        event.currentTarget.ref.displayContactSection();
-      });
-      document.querySelector('.nav3').ref = this;
-  
-      if (localStorage.getItem('books') != null) {
-        this.displayBookListSection();
-        this.booksArray = JSON.parse(localStorage.getItem('books'));
-        this.intitializeDocument();
-        this.intitializeRemoveButtonEvents();
-      }
-  
-      window.setInterval(() => {
-        // eslint-disable-next-line no-undef
-        application.dateTime.innerHTML = `<p>${luxon.DateTime.local().toLocaleString(luxon.DateTime.DATETIME_MED_WITH_SECONDS)
-        }</p>`;
-      }, 1000, this);
+  constructor() {
+    this.contactForm = document.querySelector('.book_form');
+    this.title = document.querySelector('.book_title');
+    this.author = document.querySelector('.book_author');
+    this.bookList = document.querySelector('.parent_book_container');
+    this.dateTime = document.querySelector('.date_time');
+    this.bookListSection = document.querySelector('.book_list_section');
+    this.addBookSection = document.querySelector('.add_book_section');
+    this.contactSection = document.querySelector('.contact_section');
+
+    this.booksArray = [];
+    this.monthMap = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    this.contactForm.addEventListener('submit', (event) => {
+      event.currentTarget.ref.addBook();
+      event.preventDefault();
+    });
+    this.contactForm.ref = this;
+
+    document.querySelector('.nav1').addEventListener('click', (event) => {
+      event.currentTarget.ref.displayBookListSection();
+    });
+    document.querySelector('.nav1').ref = this;
+
+    document.querySelector('.nav2').addEventListener('click', (event) => {
+      event.currentTarget.ref.displayAddBookSection();
+    });
+    document.querySelector('.nav2').ref = this;
+
+    document.querySelector('.nav3').addEventListener('click', (event) => {
+      event.currentTarget.ref.displayContactSection();
+    });
+    document.querySelector('.nav3').ref = this;
+
+    if (localStorage.getItem('books') != null) {
+      this.displayBookListSection();
+      this.booksArray = JSON.parse(localStorage.getItem('books'));
+      this.intitializeDocument();
+      this.intitializeRemoveButtonEvents();
     }
-  
+
+    window.setInterval(() => {
+      // eslint-disable-next-line no-undef
+      application.dateTime.innerHTML = `<p>${luxon.DateTime.local().toLocaleString(luxon.DateTime.DATETIME_MED_WITH_SECONDS)
+      }</p>`;
+    }, 1000, this);
+  }
+
       intitializeDocument = () => {
         this.bookList.innerHTML = '';
         let i = (this.booksArray.length - 1);
@@ -62,7 +62,7 @@ class Application {
           i -= 1;
         }, i);
       }
-  
+
       removeBook = (index) => {
         document.querySelector(`.remove_button_${index}`).addEventListener('click', (event) => {
           const tempbooksArray = [];
@@ -83,7 +83,7 @@ class Application {
         document.querySelector(`.remove_button_${index}`).index = index;
         document.querySelector(`.remove_button_${index}`).ref = this;
       }
-  
+
       intitializeRemoveButtonEvents = () => {
         let i = (this.booksArray.length - 1);
         this.booksArray.forEach(() => {
@@ -91,7 +91,7 @@ class Application {
           i -= 1;
         }, i);
       }
-  
+
       addBook = () => {
         this.displayBookListSection();
         this.booksArray.push({ title: this.title.value, author: this.author.value });
@@ -101,25 +101,25 @@ class Application {
         this.intitializeDocument();
         this.intitializeRemoveButtonEvents();
       }
-  
+
       displayBookListSection = () => {
         this.bookListSection.classList.remove('vanish');
         this.addBookSection.classList.add('vanish');
         this.contactSection.classList.add('vanish');
       }
-  
+
       displayAddBookSection = () => {
         this.bookListSection.classList.add('vanish');
         this.addBookSection.classList.remove('vanish');
         this.contactSection.classList.add('vanish');
       }
-  
+
       displayContactSection = () => {
         this.bookListSection.classList.add('vanish');
         this.addBookSection.classList.add('vanish');
         this.contactSection.classList.remove('vanish');
       }
-  }
-  /* eslint-disable */
+}
+/* eslint-disable */
   export { Application };
   /* eslint-enable */
