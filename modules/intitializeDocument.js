@@ -11,4 +11,5 @@ function intitializeDocument(bookList, booksArray) {
       </div>`;
   }
 }
+
 export default intitializeDocument;

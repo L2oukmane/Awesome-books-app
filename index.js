@@ -1,5 +1,4 @@
 import intitializeDocument from './modules/intitializeDocument.js';
-import intitializeRemoveButtonEvents from './modules/intitializeRemoveButtonEvents.js';
 import displayBookListSection from './modules/displayBookListSection.js';
 import displayAddBookSection from './modules/displayAddBookSection.js';
 import displayContactSection from './modules/displayContactSection.js';
@@ -26,9 +25,9 @@ class Application {
     this.title.value = '';
     this.author.value = '';
     intitializeDocument(this.bookList, this.booksArray);
+/* eslint-disable */
     intitializeRemoveButtonEvents(this);
   }
-
   // intitializeDocument()
 
   // removeBook(index)
@@ -44,6 +43,31 @@ class Application {
   // displayContactSection()
 }
 const application = new Application();
+
+function removeBook(index, application) {
+  document.querySelector(`.remove_button_${index}`).addEventListener('click', () => {
+    const tempbooksArray = [];
+    for (let j = 0; j < application.booksArray.length; j += 1) {
+      if (j !== index) {
+        tempbooksArray.push({
+          title: application.booksArray[j].title,
+          author: application.booksArray[j].author,
+        });
+      }
+    }
+    application.booksArray = tempbooksArray;
+    localStorage.setItem('books', JSON.stringify(application.booksArray));
+		/* eslint-disable */
+    intitializeDocument(application.bookList, application.booksArray);
+    intitializeRemoveButtonEvents(application);
+  });
+}
+
+function intitializeRemoveButtonEvents(application) {
+  for (let i = (application.booksArray.length - 1); i > -1; i -= 1) {
+    removeBook(i, application);
+  }
+}
 
 application.contactForm.addEventListener('submit', (event) => {
   application.addBook();
